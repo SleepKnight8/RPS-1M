@@ -148,3 +148,22 @@ h3 {
     transform: scale(1.05);
     background-color: #e6cd4f;
 }
+.logo {
+    width: 180px;
+    max-width: 90%;
+    border-radius: 12px;
+    margin: 2rem auto;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 240, 100, 0.4);
+}
+
+/* ===== Footer ===== */
+#copyright {
+    font-size: 14px;
+    color: #888;
+    margin-top: 3rem;
+}
