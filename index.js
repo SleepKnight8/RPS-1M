@@ -5,6 +5,11 @@ let computer_move;
 let balance = 50000;
 let bet = 1000;
 
+let computer_move_icon = {
+    "R": "👊",
+    "P": "🖐️",
+    "S": "✌️"
+}
 loadGame()
 
 function chooseMove(button) {
@@ -40,13 +45,15 @@ function play() {
     }
 
     const moves = ["R", "P", "S"];
+
     const computer_move_random = moves[Math.floor(Math.random() * 3)];
 
-    document.getElementById("ComputerMoveDisplay").innerHTML = computer_move_random;
+    document.getElementById("ComputerMoveDisplay").innerHTML = computer_move_icon[computer_move_random];
 
     if (computer_move_random === player_move) {
         document.getElementById("result").innerHTML = "Tie";
         document.getElementById("BetResult").innerHTML = "0";
+        document.getElementById("BetResult").style.color = "lightslategray";
         saveGame();
         return;
     }
@@ -60,12 +67,14 @@ function play() {
         document.getElementById("result").innerHTML = "You Win!";
         document.getElementById("BetResult").innerHTML = "+" + bet;
         balance += bet;
-        win_count++;
+        document.getElementById("BetResult").style.color = "#06d6a0";
     } else {
         document.getElementById("result").innerHTML = "You Lose!";
         document.getElementById("BetResult").innerHTML = "-" + bet;
         balance -= bet;
-        lose_count++;
+        document.getElementById("BetResult").style.color = "#ef476f";
+
+
     }
 
     document.getElementById("MoneyDisplay").innerHTML = balance;
@@ -74,10 +83,14 @@ function play() {
 
     if (balance >= 1000000) {
         alert("You Win the Game!");
+        win_count += 1;
+        NewGame();
     }
 
-    if (balance <= 0) {
+    else if (balance <= 0) {
         alert("You Lost the Game!");
+        lose_count += 1;
+        NewGame();
     }
 
     saveGame();
@@ -101,7 +114,19 @@ function loadGame() {
     document.getElementById("BetDisplay").innerHTML = bet;
 }
 
-function resetGame() {
-    localStorage.clear();
-    location.reload();
+function NewGame() {
+    balance = 50000;
+    bet = 1000;
+
+    // clear saved data OR reset it
+    saveGame();
+
+    // update UI immediately
+    document.getElementById("MoneyDisplay").innerHTML = balance;
+    document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
+    document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
+    document.getElementById("BetDisplay").innerHTML = bet;
+
+    document.getElementById("result").innerHTML = "Result";
+    document.getElementById("BetResult").innerHTML = "Bet Result";
 }
