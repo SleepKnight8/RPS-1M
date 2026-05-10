@@ -1,4 +1,5 @@
 A game wehre you start with 500K Dollars and you have to reach your first Million by playing Rock Paper Scissors.
+<img width="224" height="203" alt="image" src="https://github.com/user-attachments/assets/be3a89bc-cf27-42c4-afd5-abf0acd2aa65" />
 
 <img width="1400" height="802" alt="image" src="https://github.com/user-attachments/assets/7a8fad68-9cf0-4676-8a58-23162fcf9316" />
 
