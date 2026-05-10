@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RPS to 1M</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="GameName">RPS to 1M</h1>
+    <h2 id="GameMission">a game where you play RPS (Rock, Paper, Scissors) and try to collect 1M dollars to win the game.</h2>
+    <h3>Game Status</h3>
+    <div id="GameStatusDiv">
+        <h4 id="WinStatus">Wins: </h4>
+        <h4 id="LoseStatus">Loses: </h4>
+    </div>
+    <h3 id="MoneyDisplay">XXX</h3>
+    <h3 id="BetDisplay">XXX</h3>
+    <div id="MoneyBetDiv">
+        <button id="Increase">+</button>
+        <button id="Decrease">-</button>
+    </div>
+    <h3>Your Move</h3>
+    <div id="MoveDiv">
+
+        <button onclick="chooseMove(this)" class="PlayerMove">
+            👊
+        </button>
+
+        <button onclick="chooseMove(this)" class="PlayerMove">
+            🖐️
+        </button>
+
+        <button onclick="chooseMove(this)" class="PlayerMove">
+            ✌️
+        </button>
+
+    </div>
+
+    <button id="StartGame">Start</button>
+
+    <h4 id="ComputerMoveDisplay"></h4>
+
+    <script src="index.js"></script>
+</body>
+</html>
