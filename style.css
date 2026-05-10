@@ -150,7 +150,20 @@ body {
 
     cursor: pointer;
 }
+#RestartGame{
+    width: 150px;
+    height: 65px;
 
+    border: none;
+    border-radius: 15px;
+
+    background: #f5e05a;
+    color: #13171c;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
 /* ===== FOOTER TEXT ===== */
 
 h2 {
