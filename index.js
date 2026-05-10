@@ -161,5 +161,3 @@ function restart() {
     updateUI();
     saveGame();
 }
-
-localStorage.clear()
