@@ -9,8 +9,8 @@
 /* ===== BASE ===== */
 
 body {
-    min-height: 100vh;
     width: 100%;
+    min-height: 100vh;
 
     background: linear-gradient(135deg, #13171c 0%, #1b2028 100%);
     color: #f5e05a;
@@ -21,10 +21,9 @@ body {
     display: flex;
     justify-content: center;
 
-    padding: 12px;
+    padding: 20px;
 
     overflow-x: hidden;
-    overflow-y: auto;
 }
 
 /* ===== GAME CONTAINER ===== */
@@ -37,9 +36,8 @@ body {
     flex-direction: column;
     align-items: center;
 
-    gap: 12px;
+    gap: 15px;
 
-    min-height: 100vh;
     padding: 20px 0;
 }
 
@@ -84,7 +82,7 @@ body {
     color: #888;
 }
 
-/* ===== MONEY DISPLAY ===== */
+/* ===== MONEY ===== */
 
 #MoneyDisplay,
 #BetDisplay {
@@ -154,7 +152,7 @@ body {
     cursor: pointer;
 }
 
-/* ===== FOOTER TEXT ===== */
+/* ===== FOOTER ===== */
 
 h2 {
     margin-top: 10px;
@@ -164,60 +162,4 @@ h2 {
     font-size: 0.8rem;
     color: #aaa;
     margin-bottom: 10px;
-}
-
-/* ========================================================= */
-/* 🖥️ DESKTOP FULLSCREEN FIX */
-/* ========================================================= */
-
-@media (min-width: 1024px) {
-
-    body {
-        padding: 30px;
-        overflow-y: auto;
-    }
-
-    #GameContainer {
-        max-width: 1000px;
-        min-height: 100vh;
-
-        justify-content: flex-start;
-        gap: 25px;
-    }
-
-    #GameName {
-        font-size: 4rem;
-    }
-
-    #GameMission {
-        font-size: 1.4rem;
-        max-width: 900px;
-    }
-
-    #GameResultDiv {
-        width: 600px;
-    }
-
-    .PlayerMove {
-        width: 160px;
-        height: 85px;
-        font-size: 1.4rem;
-    }
-
-    #StartGame {
-        width: 200px;
-        height: 80px;
-        font-size: 1.5rem;
-    }
-
-    #MoneyDisplay,
-    #BetDisplay {
-        font-size: 1.4rem;
-    }
-
-    #MoneyBetDiv button {
-        width: 60px;
-        height: 60px;
-        font-size: 1.6rem;
-    }
 }
