@@ -1,59 +1,103 @@
-body {
-    height: 100vh;
-    overflow: hidden;
+/* ===== GLOBAL ===== */
 
+* {
     margin: 0;
-    padding: 10px;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
 
     background: linear-gradient(135deg, #13171c 0%, #1b2028 100%);
     color: #f5e05a;
 
     font-family: Arial, sans-serif;
     text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+}
+
+/* ===== MAIN CONTAINER ===== */
+
+#GameContainer {
+    width: 100%;
+    max-width: 900px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
 }
 
 /* ===== TITLE ===== */
+
 #GameName {
-    font-size: 40px;
-    margin: 5px 0;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: bold;
 }
 
 #GameMission {
-    margin: 5px 0;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: #d8c84f;
+
+    max-width: 800px;
+    line-height: 1.5;
+    padding: 0 10px;
 }
 
 /* ===== STATUS ===== */
-h3 {
-    margin: 5px 0;
-}
 
 #GameStatusDiv {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin: 5px 0;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    width: 100%;
+}
+
+#WinStatus,
+#LoseStatus {
+    background: #2a2a2a;
+
+    padding: 10px 18px;
+    border-radius: 12px;
+
+    font-size: clamp(1rem, 2vw, 1.1rem);
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* ===== RESULT BOX ===== */
+
 #GameResultDiv {
-    margin: 5px auto;
-    padding: 10px;
+    width: min(90%, 500px);
 
-    width: 60%;
-    max-width: 500px;
+    background: #2a2a2a;
 
-    background-color: #2a2a2a;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 #GameResultDiv p {
-    margin: 6px 0;
-    font-size: 18px;
+    margin: 8px 0;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+#ComputerMoveDisplay {
+    color: #8ecae6;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
 #result {
@@ -62,114 +106,158 @@ h3 {
 }
 
 #BetResult {
-    color: dimgray;
-}
-
-#ComputerMoveDisplay {
-    color: #8ecae6;
-    font-size: 22px;
+    color: #888;
 }
 
 /* ===== MONEY / BET ===== */
+
 #MoneyDisplay,
 #BetDisplay {
-    background-color: #2a2a2a;
-    padding: 8px;
-    border-radius: 10px;
-    width: fit-content;
-    margin: 5px auto;
+    background: #2a2a2a;
+
+    padding: 10px 20px;
+    border-radius: 12px;
+
+    font-size: clamp(1rem, 2vw, 1.3rem);
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
+/* ===== BET BUTTONS ===== */
+
 #MoneyBetDiv {
-    margin: 5px 0;
+    display: flex;
+    gap: 12px;
 }
 
 #MoneyBetDiv button {
-    background-color: #2a2a2a;
-    color: #f5e05a;
-
-    width: 45px;
-    height: 45px;
-    font-size: 22px;
+    width: 50px;
+    height: 50px;
 
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
+
+    background: #2a2a2a;
+    color: #f5e05a;
+
+    font-size: 1.5rem;
 
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
-/* ===== MOVES ===== */
+#MoneyBetDiv button:hover {
+    transform: scale(1.08);
+    background: #343434;
+}
+
+/* ===== PLAYER MOVES ===== */
+
 #MoveDiv {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    flex-wrap: wrap;
 
-    margin: 5px 0;
+    gap: 15px;
+    width: 100%;
 }
 
 .PlayerMove {
-    background-color: #2a2a2a;
-    color: #f5e05a;
-
-    width: 130px;
-    height: 65px;
-    font-size: 18px;
+    width: clamp(85px, 20vw, 140px);
+    height: clamp(55px, 10vw, 75px);
 
     border: none;
-    border-radius: 15px;
+    border-radius: 16px;
+
+    background: #2a2a2a;
+    color: #f5e05a;
+
+    font-size: clamp(1rem, 2vw, 1.4rem);
 
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .PlayerMove:hover {
     transform: scale(1.05);
+    background: #343434;
 }
 
 /* ===== START BUTTON ===== */
+
 #StartGame {
-    background-color: #f5e05a;
-    color: #13171c;
-
-    width: 150px;
-    height: 65px;
-
-    font-size: 20px;
-    font-weight: bold;
+    width: clamp(120px, 25vw, 170px);
+    height: clamp(55px, 10vw, 70px);
 
     border: none;
-    border-radius: 15px;
+    border-radius: 16px;
+
+    background: #f5e05a;
+    color: #13171c;
+
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: bold;
 
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.2s ease;
+
+    box-shadow: 0 4px 15px rgba(245, 224, 90, 0.25);
 }
 
 #StartGame:hover {
     transform: scale(1.05);
-    background-color: #e6cd4f;
+    background: #e6cd4f;
 }
+
+/* ===== DEVELOPER ===== */
+
 .logo {
-    width: 90px;
-    height: 90px;
+    width: clamp(70px, 15vw, 100px);
+    height: clamp(70px, 15vw, 100px);
 
-    object-fit: cover;
+    object-fit: contain;
+
     border-radius: 50%;
+    background: #2a2a2a;
 
-    margin-top: 8px;
-    margin-bottom: 10px;
+    padding: 5px;
 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .logo:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 240, 100, 0.4);
+    transform: scale(1.08);
+
+    box-shadow: 0 0 20px rgba(255, 240, 100, 0.35);
 }
 
-/* ===== Footer ===== */
+/* ===== FOOTER ===== */
+
 #copyright {
-    font-size: 12px;
     color: #777;
-    margin-top: 8px;
-    margin-bottom: 0;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+
+    margin-top: 5px;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+    #GameContainer {
+        gap: 10px;
+    }
+
+    #GameMission {
+        font-size: 0.85rem;
+    }
+
+    #GameResultDiv {
+        width: 95%;
+    }
+
+    #MoneyBetDiv button {
+        width: 45px;
+        height: 45px;
+    }
 }
