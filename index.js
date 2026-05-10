@@ -85,9 +85,7 @@ function play() {
 
     if (balance < 0) balance = 0;
 
-    document.getElementById("MoneyDisplay").innerHTML = balance;
-    document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
-    document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
+    updateUI();
 
     if (balance >= 1000000) {
         alert("You Win the Game!");
@@ -116,12 +114,13 @@ function loadGame() {
     balance = Number(localStorage.getItem("balance")) || 50000;
     win_count = Number(localStorage.getItem("win_count")) || 0;
     lose_count = Number(localStorage.getItem("lose_count")) || 0;
-    bet = 1000;
+    bet = Number(localStorage.getItem("bet")) || 1000;
 
     document.getElementById("MoneyDisplay").innerHTML = balance;
     document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
     document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
     document.getElementById("BetDisplay").innerHTML = bet;
+    updateUI();
 }
 
 function NewGame() {
@@ -150,7 +149,7 @@ function restart() {
     balance = 50000;
     bet = 1000;
     player_move = null;
-
+    
     document.querySelectorAll(".PlayerMove").forEach(btn => {
         btn.style.backgroundColor = "";
     });
