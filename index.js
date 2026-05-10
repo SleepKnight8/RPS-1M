@@ -38,66 +38,72 @@ function BetFunc(button) {
 }
 
 function play() {
-    if (bet <= balance) {
-        if (balance <= 0) {
-            alert("You Lost the Game!");
-            return;
-        }
-
-        const moves = ["R", "P", "S"];
-
-        const computer_move_random = moves[Math.floor(Math.random() * 3)];
-
-        document.getElementById("ComputerMoveDisplay").innerHTML = computer_move_icon[computer_move_random];
-
-        if (computer_move_random === player_move) {
-            document.getElementById("result").innerHTML = "Tie";
-            document.getElementById("BetResult").innerHTML = "0";
-            document.getElementById("BetResult").style.color = "lightslategray";
-            saveGame();
-            return;
-        }
-
-        const BetWin =
-            (player_move === "R" && computer_move_random === "S") ||
-            (player_move === "P" && computer_move_random === "R") ||
-            (player_move === "S" && computer_move_random === "P");
-
-        if (BetWin) {
-            document.getElementById("result").innerHTML = "You Win!";
-            document.getElementById("BetResult").innerHTML = "+" + bet;
-            balance += bet;
-            document.getElementById("BetResult").style.color = "#06d6a0";
-        } else {
-            document.getElementById("result").innerHTML = "You Lose!";
-            document.getElementById("BetResult").innerHTML = "-" + bet;
-            balance -= bet;
-            document.getElementById("BetResult").style.color = "#ef476f";
-
-
-        }
-
-        document.getElementById("MoneyDisplay").innerHTML = balance;
-        document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
-        document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
-
-        if (balance >= 1000000) {
-            alert("You Win the Game!");
-            win_count += 1;
-            NewGame();
-        }
-
-        else if (balance <= 0) {
-            alert("You Lost the Game!");
-            lose_count += 1;
-            NewGame();
-        }
-
-    else{
-        bet = balance;
-        }
-    saveGame();
+    if (bet > balance) {
+    bet = balance;
+    document.getElementById("BetDisplay").innerHTML = bet;
     }
+    if (balance <= 0) {
+        alert("You Lost the Game!");
+        return;
+    }
+    else if (!player_move) {
+        alert("Please select a move!");
+        return;
+    }
+
+    const moves = ["R", "P", "S"];
+
+    const computer_move_random = moves[Math.floor(Math.random() * 3)];
+
+    document.getElementById("ComputerMoveDisplay").innerHTML = computer_move_icon[computer_move_random];
+
+    if (computer_move_random === player_move) {
+        document.getElementById("result").innerHTML = "Tie";
+        document.getElementById("BetResult").innerHTML = "0";
+        document.getElementById("BetResult").style.color = "lightslategray";
+        saveGame();
+        return;
+    }
+
+    const BetWin =
+        (player_move === "R" && computer_move_random === "S") ||
+        (player_move === "P" && computer_move_random === "R") ||
+        (player_move === "S" && computer_move_random === "P");
+
+    if (BetWin) {
+        document.getElementById("result").innerHTML = "You Win!";
+        document.getElementById("BetResult").innerHTML = "+" + bet;
+        balance += bet;
+        document.getElementById("BetResult").style.color = "#06d6a0";
+    }
+    else {
+        document.getElementById("result").innerHTML = "You Lose!";
+        document.getElementById("BetResult").innerHTML = "-" + bet;
+        balance -= bet;
+        document.getElementById("BetResult").style.color = "#ef476f";
+    }
+
+    if (balance < 0) balance = 0;
+
+    document.getElementById("MoneyDisplay").innerHTML = balance;
+    document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
+    document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
+
+    if (balance >= 1000000) {
+        alert("You Win the Game!");
+        win_count += 1;
+        NewGame();
+        return;
+    }
+
+    else if (balance <= 0) {
+        alert("You Lost the Game!");
+        lose_count += 1;
+        NewGame();
+        return;
+    }
+    updateUI();
+    saveGame();
 }
 function saveGame() {
     localStorage.setItem("balance", balance);
@@ -110,7 +116,7 @@ function loadGame() {
     balance = Number(localStorage.getItem("balance")) || 50000;
     win_count = Number(localStorage.getItem("win_count")) || 0;
     lose_count = Number(localStorage.getItem("lose_count")) || 0;
-    bet = Number(localStorage.getItem("bet")) || 1000;
+    bet = 1000;
 
     document.getElementById("MoneyDisplay").innerHTML = balance;
     document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
@@ -133,4 +139,10 @@ function NewGame() {
 
     document.getElementById("result").innerHTML = "Result";
     document.getElementById("BetResult").innerHTML = "Bet Result";
+}
+function updateUI() {
+    document.getElementById("MoneyDisplay").innerHTML = balance;
+    document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
+    document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
+    document.getElementById("BetDisplay").innerHTML = bet;
 }
