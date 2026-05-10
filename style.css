@@ -139,19 +139,6 @@ body {
     font-weight: bold;
 }
 
-/* ===== LOGO (UPDATED) ===== */
-
-.logo {
-    width: 90px;
-    height: 90px;
-
-    object-fit: contain;
-    border-radius: 50%;
-
-    background: #2a2a2a;
-    padding: 5px;
-}
-
 /* ========================================================= */
 /* 🖥️ DESKTOP FULLSCREEN MODE */
 /* ========================================================= */
@@ -208,10 +195,5 @@ body {
         width: 60px;
         height: 60px;
         font-size: 1.6rem;
-    }
-
-    .logo {
-        width: 80px;
-        height: 80px;
     }
 }
