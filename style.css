@@ -1,0 +1,84 @@
+body {
+    background-color: #1e1e1e;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+#GameName {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+#GameMission {
+    color: lightgray;
+}
+
+#GameStatusDiv {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+#MoneyDisplay,
+#BetDisplay {
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 10px auto;
+}
+
+#MoneyBetDiv {
+    margin-bottom: 30px;
+}
+
+#MoneyBetDiv button {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#MoveDiv {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.PlayerMove {
+    width: 150px;
+    height: 80px;
+    font-size: 22px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.PlayerMove:hover {
+    transform: scale(1.05);
+}
+
+#StartGame {
+    margin-top: 30px;
+    width: 200px;
+    height: 60px;
+    font-size: 24px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#ComputerMoveDisplay {
+    margin-top: 30px;
+    font-size: 25px;
+    color: lightblue;
+}
+
