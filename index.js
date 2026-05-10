@@ -146,3 +146,19 @@ function updateUI() {
     document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
     document.getElementById("BetDisplay").innerHTML = bet;
 }
+function restart() {
+    balance = 50000;
+    bet = 1000;
+    player_move = null;
+
+    document.querySelectorAll(".PlayerMove").forEach(btn => {
+        btn.style.backgroundColor = "";
+    });
+
+    document.getElementById("ComputerMoveDisplay").innerHTML = "Computer Move";
+    document.getElementById("result").innerHTML = "Result";
+    document.getElementById("BetResult").innerHTML = "Bet Result";
+
+    updateUI();
+    saveGame();
+}
