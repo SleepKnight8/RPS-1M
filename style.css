@@ -149,11 +149,16 @@ h3 {
     background-color: #e6cd4f;
 }
 .logo {
-    width: 180px;
-    max-width: 90%;
-    border-radius: 12px;
-    margin: 2rem auto;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    width: 90px;
+    height: 90px;
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    margin-top: 8px;
+    margin-bottom: 10px;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo:hover {
@@ -163,7 +168,8 @@ h3 {
 
 /* ===== Footer ===== */
 #copyright {
-    font-size: 14px;
-    color: #888;
-    margin-top: 3rem;
+    font-size: 12px;
+    color: #777;
+    margin-top: 8px;
+    margin-bottom: 0;
 }
