@@ -14,29 +14,29 @@
         <h4 id="LoseStatus">Loses: </h4>
     </div>
     <h3 id="MoneyDisplay">XXX</h3>
-    <h3 id="BetDisplay">XXX</h3>
+    <h3 id="BetDisplay">1000</h3>
     <div id="MoneyBetDiv">
-        <button id="Increase">+</button>
-        <button id="Decrease">-</button>
+        <button id="Increase" onclick="BetFunc(this)">+</button>
+        <button id="Decrease" onclick="BetFunc(this)">-</button>
     </div>
     <h3>Your Move</h3>
     <div id="MoveDiv">
 
-        <button onclick="chooseMove(this)" class="PlayerMove">
+        <button onclick="chooseMove(this)" class="PlayerMove" value="R">
             👊
         </button>
 
-        <button onclick="chooseMove(this)" class="PlayerMove">
+        <button onclick="chooseMove(this)" class="PlayerMove" value="P">
             🖐️
         </button>
 
-        <button onclick="chooseMove(this)" class="PlayerMove">
+        <button onclick="chooseMove(this)" class="PlayerMove" value="S">
             ✌️
         </button>
 
     </div>
 
-    <button id="StartGame">Start</button>
+    <button id="StartGame" onclick="play()">Start</button>
 
     <h4 id="ComputerMoveDisplay"></h4>
 
