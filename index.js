@@ -1,163 +1,151 @@
-let win_count= 0;
-let lose_count = 0;
-let player_move;
-let computer_move;
-let balance = 50000;
-let bet = 1000;
+import { current_streak, best_streak, isNextDay } from "./streak.js";
 
-let computer_move_icon = {
-    "R": "👊",
-    "P": "🖐️",
-    "S": "✌️"
-}
-loadGame()
+let AyahRange = {
+    1: 7,
+    2: 286,
+    3: 200,
+    4: 176,
+    5: 120,
+    6: 165,
+    7: 206,
+    8: 75,
+    9: 129,
+    10: 109,
+    11: 123,
+    12: 111,
+    13: 43,
+    14: 52,
+    15: 99,
+    16: 128,
+    17: 111,
+    18: 110,
+    19: 98,
+    20: 135,
+    21: 112,
+    22: 78,
+    23: 118,
+    24: 64,
+    25: 77,
+    26: 227,
+    27: 93,
+    28: 88,
+    29: 69,
+    30: 60,
+    31: 34,
+    32: 30,
+    33: 73,
+    34: 54,
+    35: 45,
+    36: 83,
+    37: 182,
+    38: 88,
+    39: 75,
+    40: 85,
+    41: 54,
+    42: 53,
+    43: 89,
+    44: 59,
+    45: 37,
+    46: 35,
+    47: 38,
+    48: 29,
+    49: 18,
+    50: 45,
+    51: 60,
+    52: 49,
+    53: 62,
+    54: 55,
+    55: 78,
+    56: 96,
+    57: 29,
+    58: 22,
+    59: 24,
+    60: 13,
+    61: 14,
+    62: 11,
+    63: 11,
+    64: 18,
+    65: 12,
+    66: 12,
+    67: 30,
+    68: 52,
+    69: 52,
+    70: 44,
+    71: 28,
+    72: 28,
+    73: 20,
+    74: 56,
+    75: 40,
+    76: 31,
+    77: 50,
+    78: 40,
+    79: 46,
+    80: 42,
+    81: 29,
+    82: 19,
+    83: 36,
+    84: 25,
+    85: 22,
+    86: 17,
+    87: 19,
+    88: 26,
+    89: 30,
+    90: 20,
+    91: 15,
+    92: 21,
+    93: 11,
+    94: 8,
+    95: 8,
+    96: 19,
+    97: 5,
+    98: 8,
+    99: 8,
+    100: 11,
+    101: 11,
+    102: 8,
+    103: 3,
+    104: 9,
+    105: 5,
+    106: 4,
+    107: 7,
+    108: 3,
+    109: 6,
+    110: 3,
+    111: 5,
+    112: 4,
+    113: 5,
+    114: 6
+};
 
-function chooseMove(button) {
+document.getElementById("current_streak").innerHTML =
+`Current Streak: ${current_streak}`;
 
-    document.querySelectorAll(".PlayerMove").forEach(btn => {
-        btn.style.backgroundColor = "";
-    });
+document.getElementById("best_streak").innerHTML =
+`Best Streak: ${best_streak}`;
 
-    button.style.backgroundColor = "lightblue";
+function RandomAyah(){
+    let Surah = Math.floor(Math.random() * 114) + 1;
+    let Ayah = Math.floor(Math.random() * AyahRange[Surah]) + 1;
+    let language = document.getElementById("language-select").value;
 
-    player_move = button.value;
-    // console.log(player_move); debug OK
-}
+    fetch(`https://api.alquran.cloud/v1/ayah/${Surah}:${Ayah}/${language}`)
+        .then(res => res.json())
+        .then(json => {
+            document.getElementById("ayah").innerHTML = json["data"]["text"];
+            document.getElementById("surah").innerHTML =
+            `Surah Name: ${json["data"]["surah"]["englishName"]}`;
+            document.getElementById("ayahindex").innerHTML =
+            `Ayah Number: ${json["data"]["numberInSurah"]}`;
+        })
+        .catch(error =>{
+            alert(`Couldn't fetch data\n${error}`);
+            document.getElementById("ayah").innerHTML =
+            "وَقُل رَّبِّ زِدْنِي عِلْمًا";
+            document.getElementById("surah").innerHTML =
+            `Surah Name: Taa-Haa`;
+            document.getElementById("ayahindex").innerHTML =
+            `Ayah Number: 114`;
+        });
 
-function BetFunc(button) {
-    if (button.id === "Increase") {
-        if (bet <= balance-1000) {
-            bet += 1000;
-        }
-    }
-    else if (button.id === "Decrease" && bet !== 1000) {
-        bet -= 1000;
-    }
-
-    document.getElementById("BetDisplay").innerHTML = bet;
-}
-
-function play() {
-    if (bet > balance) {
-    bet = balance;
-    document.getElementById("BetDisplay").innerHTML = bet;
-    }
-    if (balance <= 0) {
-        alert("You Lost the Game!");
-        return;
-    }
-    else if (!player_move) {
-        alert("Please select a move!");
-        return;
-    }
-
-    const moves = ["R", "P", "S"];
-
-    const computer_move_random = moves[Math.floor(Math.random() * 3)];
-
-    document.getElementById("ComputerMoveDisplay").innerHTML = computer_move_icon[computer_move_random];
-
-    if (computer_move_random === player_move) {
-        document.getElementById("result").innerHTML = "Tie";
-        document.getElementById("BetResult").innerHTML = "0";
-        document.getElementById("BetResult").style.color = "lightslategray";
-        saveGame();
-        return;
-    }
-
-    const BetWin =
-        (player_move === "R" && computer_move_random === "S") ||
-        (player_move === "P" && computer_move_random === "R") ||
-        (player_move === "S" && computer_move_random === "P");
-
-    if (BetWin) {
-        document.getElementById("result").innerHTML = "You Win!";
-        document.getElementById("BetResult").innerHTML = "+" + bet;
-        balance += bet;
-        document.getElementById("BetResult").style.color = "#06d6a0";
-    }
-    else {
-        document.getElementById("result").innerHTML = "You Lose!";
-        document.getElementById("BetResult").innerHTML = "-" + bet;
-        balance -= bet;
-        document.getElementById("BetResult").style.color = "#ef476f";
-    }
-
-    if (balance < 0) balance = 0;
-
-    updateUI();
-
-    if (balance >= 1000000) {
-        alert("You Win the Game!");
-        win_count += 1;
-        NewGame();
-        return;
-    }
-
-    else if (balance <= 0) {
-        alert("You Lost the Game!");
-        lose_count += 1;
-        NewGame();
-        return;
-    }
-    updateUI();
-    saveGame();
-}
-function saveGame() {
-    localStorage.setItem("balance", balance);
-    localStorage.setItem("win_count", win_count);
-    localStorage.setItem("lose_count", lose_count);
-    localStorage.setItem("bet", bet);
-}
-
-function loadGame() {
-    balance = Number(localStorage.getItem("balance")) || 50000;
-    win_count = Number(localStorage.getItem("win_count")) || 0;
-    lose_count = Number(localStorage.getItem("lose_count")) || 0;
-    bet = Number(localStorage.getItem("bet")) || 1000;
-
-    document.getElementById("MoneyDisplay").innerHTML = balance;
-    document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
-    document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
-    document.getElementById("BetDisplay").innerHTML = bet;
-    updateUI();
-}
-
-function NewGame() {
-    balance = 50000;
-    bet = 1000;
-
-    // clear saved data OR reset it
-    saveGame();
-
-    // update UI immediately
-    document.getElementById("MoneyDisplay").innerHTML = balance;
-    document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
-    document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
-    document.getElementById("BetDisplay").innerHTML = bet;
-
-    document.getElementById("result").innerHTML = "Result";
-    document.getElementById("BetResult").innerHTML = "Bet Result";
-}
-function updateUI() {
-    document.getElementById("MoneyDisplay").innerHTML = balance;
-    document.getElementById("WinStatus").innerHTML = "Wins: " + win_count;
-    document.getElementById("LoseStatus").innerHTML = "Loses: " + lose_count;
-    document.getElementById("BetDisplay").innerHTML = bet;
-}
-function restart() {
-    balance = 50000;
-    bet = 1000;
-    player_move = null;
-    
-    document.querySelectorAll(".PlayerMove").forEach(btn => {
-        btn.style.backgroundColor = "";
-    });
-
-    document.getElementById("ComputerMoveDisplay").innerHTML = "Computer Move";
-    document.getElementById("result").innerHTML = "Result";
-    document.getElementById("BetResult").innerHTML = "Bet Result";
-
-    updateUI();
-    saveGame();
+    isNextDay(localStorage.getItem("last_visit"));
 }
