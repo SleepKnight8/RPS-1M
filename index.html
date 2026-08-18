@@ -2,40 +2,27 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>RPS to 1M</title>
 
     <link rel="stylesheet" href="style.css">
-
     <link rel="icon" href="image.png">
-
 </head>
-
 
 <body>
 
-
 <div id="GameContainer">
 
-
-    <!-- Theme Switch -->
-
+    <!-- THEME SWITCH -->
     <div class="theme-switch">
 
-        <button
-            id="yellowMode"
-            onclick="setTheme('yellow')">
+        <button type="button" onclick="changeTheme('yellow')">
             🟡
         </button>
 
-        <button
-            id="purpleMode"
-            onclick="setTheme('purple')">
+        <button type="button" onclick="changeTheme('purple')">
             🟣
         </button>
 
@@ -53,9 +40,7 @@
     </h2>
 
 
-    <h3>
-        Game Status
-    </h3>
+    <h3>Game Status</h3>
 
 
     <div id="GameStatusDiv">
@@ -101,12 +86,14 @@
     <div id="MoneyBetDiv">
 
         <button
+            type="button"
             id="Increase"
             onclick="BetFunc(this)">
             +
         </button>
 
         <button
+            type="button"
             id="Decrease"
             onclick="BetFunc(this)">
             -
@@ -115,43 +102,34 @@
     </div>
 
 
-    <h3>
-        Your Move
-    </h3>
+    <h3>Your Move</h3>
 
 
     <div id="MoveDiv">
 
-
         <button
+            type="button"
             onclick="chooseMove(this)"
             class="PlayerMove"
             value="R">
-
             👊
-
         </button>
 
-
         <button
+            type="button"
             onclick="chooseMove(this)"
             class="PlayerMove"
             value="P">
-
             🖐️
-
         </button>
 
-
         <button
+            type="button"
             onclick="chooseMove(this)"
             class="PlayerMove"
             value="S">
-
             ✌️
-
         </button>
-
 
     </div>
 
@@ -160,61 +138,47 @@
 
 
     <button
+        type="button"
         id="StartGame"
         onclick="play()">
-
         Start
-
     </button>
 
 
     <button
+        type="button"
         id="RestartGame"
         onclick="restart()">
-
         Restart
-
     </button>
 
 
-    <!-- Developer -->
+    <!-- DEVELOPER -->
 
-    <h2>
-        The Best Developer
-    </h2>
-
+    <h2>The Best Developer</h2>
 
     <a
         href="https://github.com/SleepKnight8"
         target="_blank"
         class="developer">
-
         SleepKnight8
-
     </a>
-
 
     <p id="copyright">
         © 2026 SleepKnight8. All rights reserved.
     </p>
 
-
 </div>
 
 
-<!-- Your original JavaScript -->
-
+<!-- YOUR ORIGINAL GAME JS -->
 <script src="index.js"></script>
 
 
-<!-- Theme JavaScript
-     This is separate, so you don't need
-     to edit index.js.
--->
-
+<!-- THEME JS -->
 <script>
 
-function setTheme(theme) {
+function changeTheme(theme) {
 
     if (theme === "purple") {
 
@@ -222,9 +186,7 @@ function setTheme(theme) {
 
         localStorage.setItem("rps-theme", "purple");
 
-    }
-
-    else {
+    } else {
 
         document.body.classList.remove("purple-mode");
 
@@ -235,20 +197,17 @@ function setTheme(theme) {
 }
 
 
-// Remember selected theme
+// Load saved theme
 
-const savedTheme = localStorage.getItem("rps-theme");
+const savedRPSTheme = localStorage.getItem("rps-theme");
 
+if (savedRPSTheme === "purple") {
 
-if (savedTheme === "purple") {
+    changeTheme("purple");
 
-    setTheme("purple");
+} else {
 
-}
-
-else {
-
-    setTheme("yellow");
+    changeTheme("yellow");
 
 }
 
