@@ -2,217 +2,230 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>RPS to 1M</title>
 
     <link rel="stylesheet" href="style.css">
+
     <link rel="icon" href="image.png">
+
 </head>
+
 
 <body>
 
-<div id="GameContainer">
+    <!-- =========================
+         THEME SWITCH
+         ========================= -->
 
-    <!-- THEME SWITCH -->
+    <input
+        type="radio"
+        name="theme"
+        id="yellowMode"
+        checked>
+
+    <input
+        type="radio"
+        name="theme"
+        id="purpleMode">
+
+
     <div class="theme-switch">
 
-        <button type="button" onclick="changeTheme('yellow')">
+        <label
+            for="yellowMode"
+            class="theme-button">
             🟡
-        </button>
+        </label>
 
-        <button type="button" onclick="changeTheme('purple')">
+        <label
+            for="purpleMode"
+            class="theme-button">
             🟣
+        </label>
+
+    </div>
+
+
+    <!-- =========================
+         GAME
+         ========================= -->
+
+    <div id="GameContainer">
+
+        <h1 id="GameName">
+            RPS to 1M
+        </h1>
+
+
+        <h2 id="GameMission">
+            a game where you play RPS
+            (Rock, Paper, Scissors)
+            and try to collect 1M dollars
+            to win the game.
+        </h2>
+
+
+        <!-- Game Status -->
+
+        <h3>
+            Game Status
+        </h3>
+
+
+        <div id="GameStatusDiv">
+
+            <h4 id="WinStatus">
+                Wins:
+            </h4>
+
+            <h4 id="LoseStatus">
+                Loses:
+            </h4>
+
+        </div>
+
+
+        <!-- Game Result -->
+
+        <div id="GameResultDiv">
+
+            <p id="ComputerMoveDisplay">
+                Computer Move
+            </p>
+
+            <p id="result">
+                Result
+            </p>
+
+            <p id="BetResult">
+                Bet Result
+            </p>
+
+        </div>
+
+
+        <!-- Money -->
+
+        <h3 id="MoneyDisplay">
+            50000
+        </h3>
+
+
+        <h3 id="BetDisplay">
+            1000
+        </h3>
+
+
+        <!-- Bet Buttons -->
+
+        <div id="MoneyBetDiv">
+
+            <button
+                id="Increase"
+                onclick="BetFunc(this)">
+                +
+            </button>
+
+            <button
+                id="Decrease"
+                onclick="BetFunc(this)">
+                -
+            </button>
+
+        </div>
+
+
+        <!-- Player Move -->
+
+        <h3>
+            Your Move
+        </h3>
+
+
+        <div id="MoveDiv">
+
+            <button
+                onclick="chooseMove(this)"
+                class="PlayerMove"
+                value="R">
+                👊
+            </button>
+
+
+            <button
+                onclick="chooseMove(this)"
+                class="PlayerMove"
+                value="P">
+                🖐️
+            </button>
+
+
+            <button
+                onclick="chooseMove(this)"
+                class="PlayerMove"
+                value="S">
+                ✌️
+            </button>
+
+        </div>
+
+
+        <br>
+
+
+        <!-- Game Controls -->
+
+        <button
+            id="StartGame"
+            onclick="play()">
+            Start
         </button>
 
-    </div>
+
+        <button
+            id="RestartGame"
+            onclick="restart()">
+            Restart
+        </button>
 
 
-    <h1 id="GameName">
-        RPS to 1M
-    </h1>
+        <!-- =========================
+             DEVELOPER
+             ========================= -->
+
+        <h2>
+            The Best Developer
+        </h2>
 
 
-    <h2 id="GameMission">
-        a game where you play RPS (Rock, Paper, Scissors)
-        and try to collect 1M dollars to win the game.
-    </h2>
+        <a
+            href="https://github.com/SleepKnight8"
+            target="_blank"
+            class="developer">
+
+            SleepKnight8
+
+        </a>
 
 
-    <h3>Game Status</h3>
-
-
-    <div id="GameStatusDiv">
-
-        <h4 id="WinStatus">
-            Wins:
-        </h4>
-
-        <h4 id="LoseStatus">
-            Loses:
-        </h4>
-
-    </div>
-
-
-    <div id="GameResultDiv">
-
-        <p id="ComputerMoveDisplay">
-            Computer Move
+        <p id="copyright">
+            © 2026 SleepKnight8.
+            All rights reserved.
         </p>
 
-        <p id="result">
-            Result
-        </p>
-
-        <p id="BetResult">
-            Bet Result
-        </p>
-
     </div>
 
 
-    <h3 id="MoneyDisplay">
-        50000
-    </h3>
+    <!-- Your existing JavaScript -->
 
-
-    <h3 id="BetDisplay">
-        1000
-    </h3>
-
-
-    <div id="MoneyBetDiv">
-
-        <button
-            type="button"
-            id="Increase"
-            onclick="BetFunc(this)">
-            +
-        </button>
-
-        <button
-            type="button"
-            id="Decrease"
-            onclick="BetFunc(this)">
-            -
-        </button>
-
-    </div>
-
-
-    <h3>Your Move</h3>
-
-
-    <div id="MoveDiv">
-
-        <button
-            type="button"
-            onclick="chooseMove(this)"
-            class="PlayerMove"
-            value="R">
-            👊
-        </button>
-
-        <button
-            type="button"
-            onclick="chooseMove(this)"
-            class="PlayerMove"
-            value="P">
-            🖐️
-        </button>
-
-        <button
-            type="button"
-            onclick="chooseMove(this)"
-            class="PlayerMove"
-            value="S">
-            ✌️
-        </button>
-
-    </div>
-
-
-    <br>
-
-
-    <button
-        type="button"
-        id="StartGame"
-        onclick="play()">
-        Start
-    </button>
-
-
-    <button
-        type="button"
-        id="RestartGame"
-        onclick="restart()">
-        Restart
-    </button>
-
-
-    <!-- DEVELOPER -->
-
-    <h2>The Best Developer</h2>
-
-    <a
-        href="https://github.com/SleepKnight8"
-        target="_blank"
-        class="developer">
-        SleepKnight8
-    </a>
-
-    <p id="copyright">
-        © 2026 SleepKnight8. All rights reserved.
-    </p>
-
-</div>
-
-
-<!-- YOUR ORIGINAL GAME JS -->
-<script src="index.js"></script>
-
-
-<!-- THEME JS -->
-<script>
-
-function changeTheme(theme) {
-
-    if (theme === "purple") {
-
-        document.body.classList.add("purple-mode");
-
-        localStorage.setItem("rps-theme", "purple");
-
-    } else {
-
-        document.body.classList.remove("purple-mode");
-
-        localStorage.setItem("rps-theme", "yellow");
-
-    }
-
-}
-
-
-// Load saved theme
-
-const savedRPSTheme = localStorage.getItem("rps-theme");
-
-if (savedRPSTheme === "purple") {
-
-    changeTheme("purple");
-
-} else {
-
-    changeTheme("yellow");
-
-}
-
-</script>
-
+    <script src="index.js"></script>
 
 </body>
 
