@@ -1,260 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>RPS to 1M</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="icon" href="image.png">
-
-</head>
-
-
-<body>
-
-
-<div id="GameContainer">
-
-
-    <!-- Theme Switch -->
-
-    <div class="theme-switch">
-
-        <button
-            id="yellowMode"
-            onclick="setTheme('yellow')">
-            🟡
-        </button>
-
-        <button
-            id="purpleMode"
-            onclick="setTheme('purple')">
-            🟣
-        </button>
-
-    </div>
-
-
-    <h1 id="GameName">
-        RPS to 1M
-    </h1>
-
-
-    <h2 id="GameMission">
-        a game where you play RPS (Rock, Paper, Scissors)
-        and try to collect 1M dollars to win the game.
-    </h2>
-
-
-    <h3>
-        Game Status
-    </h3>
-
-
-    <div id="GameStatusDiv">
-
-        <h4 id="WinStatus">
-            Wins:
-        </h4>
-
-        <h4 id="LoseStatus">
-            Loses:
-        </h4>
-
-    </div>
-
-
-    <div id="GameResultDiv">
-
-        <p id="ComputerMoveDisplay">
-            Computer Move
-        </p>
-
-        <p id="result">
-            Result
-        </p>
-
-        <p id="BetResult">
-            Bet Result
-        </p>
-
-    </div>
-
-
-    <h3 id="MoneyDisplay">
-        50000
-    </h3>
-
-
-    <h3 id="BetDisplay">
-        1000
-    </h3>
-
-
-    <div id="MoneyBetDiv">
-
-        <button
-            id="Increase"
-            onclick="BetFunc(this)">
-            +
-        </button>
-
-        <button
-            id="Decrease"
-            onclick="BetFunc(this)">
-            -
-        </button>
-
-    </div>
-
-
-    <h3>
-        Your Move
-    </h3>
-
-
-    <div id="MoveDiv">
-
-
-        <button
-            onclick="chooseMove(this)"
-            class="PlayerMove"
-            value="R">
-
-            👊
-
-        </button>
-
-
-        <button
-            onclick="chooseMove(this)"
-            class="PlayerMove"
-            value="P">
-
-            🖐️
-
-        </button>
-
-
-        <button
-            onclick="chooseMove(this)"
-            class="PlayerMove"
-            value="S">
-
-            ✌️
-
-        </button>
-
-
-    </div>
-
-
-    <br>
-
-
-    <button
-        id="StartGame"
-        onclick="play()">
-
-        Start
-
-    </button>
-
-
-    <button
-        id="RestartGame"
-        onclick="restart()">
-
-        Restart
-
-    </button>
-
-
-    <!-- Developer -->
-
-    <h2>
-        The Best Developer
-    </h2>
-
-
-    <a
-        href="https://github.com/SleepKnight8"
-        target="_blank"
-        class="developer">
-
-        SleepKnight8
-
-    </a>
-
-
-    <p id="copyright">
-        © 2026 SleepKnight8. All rights reserved.
-    </p>
-
-
-</div>
-
-
-<!-- Your original JavaScript -->
-
-<script src="index.js"></script>
-
-
-<!-- Theme JavaScript
-     This is separate, so you don't need
-     to edit index.js.
--->
-
-<script>
-
-function setTheme(theme) {
-
-    if (theme === "purple") {
-
-        document.body.classList.add("purple-mode");
-
-        localStorage.setItem("rps-theme", "purple");
-
-    }
-
-    else {
-
-        document.body.classList.remove("purple-mode");
-
-        localStorage.setItem("rps-theme", "yellow");
-
-    }
-
+/* ===== RESET ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* ===== BASE ===== */
 
-// Remember selected theme
+body {
+    background: linear-gradient(135deg, #13171c 0%, #1b2028 100%);
+    color: #f5e05a;
 
-const savedTheme = localStorage.getItem("rps-theme");
+    font-family: Arial, sans-serif;
+    text-align: center;
 
+    display: flex;
+    justify-content: center;
 
-if (savedTheme === "purple") {
+    padding: 12px;
 
-    setTheme("purple");
-
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-else {
+/* ===== GAME CONTAINER ===== */
 
-    setTheme("yellow");
+#GameContainer {
+    width: 100%;
+    max-width: 900px;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 100vh;
+    padding: 20px 0;
 }
 
-</script>
+/* ===== TEXT ===== */
 
+#GameName {
+    font-size: clamp(2rem, 6vw, 3rem);
+}
 
-</body>
+#GameMission {
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    padding: 0 10px;
+}
 
-</html>
+/* ===== STATUS ===== */
+
+#GameStatusDiv {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* ===== RESULT BOX ===== */
+
+#GameResultDiv {
+    width: min(90%, 500px);
+    background: #2a2a2a;
+    padding: 12px;
+    border-radius: 15px;
+}
+
+#ComputerMoveDisplay {
+    color: #8ecae6;
+}
+
+#result {
+    color: #ffd166;
+    font-weight: bold;
+}
+
+#BetResult {
+    color: #888;
+}
+
+/* ===== MONEY DISPLAY ===== */
+
+#MoneyDisplay,
+#BetDisplay {
+    background: #2a2a2a;
+    padding: 10px 18px;
+    border-radius: 12px;
+}
+
+/* ===== BET BUTTONS ===== */
+
+#MoneyBetDiv {
+    display: flex;
+    gap: 10px;
+}
+
+#MoneyBetDiv button {
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #2a2a2a;
+    color: #f5e05a;
+
+    font-size: 1.4rem;
+
+    cursor: pointer;
+}
+
+/* ===== MOVES ===== */
+
+#MoveDiv {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.PlayerMove {
+    width: 120px;
+    height: 65px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #2a2a2a;
+    color: #f5e05a;
+
+    cursor: pointer;
+}
+
+/* ===== START BUTTON ===== */
+
+#StartGame {
+    width: 150px;
+    height: 65px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #f5e05a;
+    color: #13171c;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+#RestartGame{
+    width: 150px;
+    height: 65px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #f5e05a;
+    color: #13171c;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+/* ===== FOOTER TEXT ===== */
+
+h2 {
+    margin-top: 10px;
+}
+
+#copyright {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 10px;
+}
