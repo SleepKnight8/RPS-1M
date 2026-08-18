@@ -1,4 +1,6 @@
-/* ===== RESET ===== */
+/* =========================
+   RESET
+   ========================= */
 
 * {
     margin: 0;
@@ -6,172 +8,466 @@
     box-sizing: border-box;
 }
 
-/* ===== BASE ===== */
+
+/* =========================
+   BODY
+   ========================= */
 
 body {
-    background: linear-gradient(135deg, #13171c 0%, #1b2028 100%);
+
+    background: linear-gradient(
+        135deg,
+        #13171c 0%,
+        #1b2028 100%
+    );
+
     color: #f5e05a;
 
     font-family: Arial, sans-serif;
+
     text-align: center;
 
-    display: flex;
-    justify-content: center;
+    min-height: 100vh;
 
-    padding: 12px;
+    padding: 15px;
 
-    overflow-x: hidden;
-    overflow-y: auto;
+    transition: background 0.3s ease,
+                color 0.3s ease;
+
 }
 
-/* ===== GAME CONTAINER ===== */
+
+/* =========================
+   GAME CONTAINER
+   ========================= */
 
 #GameContainer {
+
     width: 100%;
+
     max-width: 900px;
 
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
     gap: 12px;
 
-    min-height: 100vh;
-    padding: 20px 0;
 }
 
-/* ===== TEXT ===== */
+
+/* =========================
+   THEME BUTTONS
+   ========================= */
+
+.theme-switch {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.theme-switch button {
+
+    width: 45px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2a2a2a;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+
+}
+
+
+.theme-switch button:hover {
+
+    transform: scale(1.1);
+
+}
+
+
+/* =========================
+   TITLE
+   ========================= */
 
 #GameName {
+
     font-size: clamp(2rem, 6vw, 3rem);
+
 }
+
 
 #GameMission {
-    font-size: clamp(0.9rem, 2vw, 1.2rem);
-    padding: 0 10px;
+
+    font-size: clamp(
+        0.9rem,
+        2vw,
+        1.2rem
+    );
+
+    max-width: 800px;
+
 }
 
-/* ===== STATUS ===== */
+
+/* =========================
+   STATUS
+   ========================= */
 
 #GameStatusDiv {
+
     display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
     gap: 20px;
-    flex-wrap: wrap;
+
 }
 
-/* ===== RESULT BOX ===== */
+
+/* =========================
+   RESULT
+   ========================= */
 
 #GameResultDiv {
+
     width: min(90%, 500px);
+
     background: #2a2a2a;
-    padding: 12px;
+
+    padding: 15px;
+
     border-radius: 15px;
+
 }
+
 
 #ComputerMoveDisplay {
+
     color: #8ecae6;
+
 }
+
 
 #result {
+
     color: #ffd166;
+
     font-weight: bold;
+
 }
+
 
 #BetResult {
+
     color: #888;
+
 }
 
-/* ===== MONEY DISPLAY ===== */
+
+/* =========================
+   MONEY
+   ========================= */
 
 #MoneyDisplay,
 #BetDisplay {
+
     background: #2a2a2a;
+
     padding: 10px 18px;
+
     border-radius: 12px;
+
 }
 
-/* ===== BET BUTTONS ===== */
+
+/* =========================
+   BET BUTTONS
+   ========================= */
 
 #MoneyBetDiv {
+
     display: flex;
+
     gap: 10px;
+
 }
 
+
 #MoneyBetDiv button {
+
     width: 50px;
+
     height: 50px;
 
     border: none;
+
     border-radius: 12px;
 
     background: #2a2a2a;
+
     color: #f5e05a;
 
     font-size: 1.4rem;
 
     cursor: pointer;
+
 }
 
-/* ===== MOVES ===== */
+
+/* =========================
+   MOVES
+   ========================= */
 
 #MoveDiv {
+
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+
     justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
 }
 
+
 .PlayerMove {
+
     width: 120px;
+
     height: 65px;
 
     border: none;
+
     border-radius: 15px;
 
     background: #2a2a2a;
+
     color: #f5e05a;
 
+    font-size: 1.5rem;
+
     cursor: pointer;
+
 }
 
-/* ===== START BUTTON ===== */
 
-#StartGame {
+/* =========================
+   GAME BUTTONS
+   ========================= */
+
+#StartGame,
+#RestartGame {
+
     width: 150px;
+
     height: 65px;
 
     border: none;
+
     border-radius: 15px;
 
     background: #f5e05a;
+
     color: #13171c;
 
     font-weight: bold;
 
     cursor: pointer;
+
 }
-#RestartGame{
-    width: 150px;
-    height: 65px;
 
-    border: none;
-    border-radius: 15px;
 
-    background: #f5e05a;
-    color: #13171c;
+/* =========================
+   DEVELOPER
+   ========================= */
+
+.developer {
+
+    color: #f5e05a;
+
+    text-decoration: none;
 
     font-weight: bold;
 
-    cursor: pointer;
 }
-/* ===== FOOTER TEXT ===== */
 
-h2 {
-    margin-top: 10px;
-}
 
 #copyright {
-    font-size: 0.8rem;
+
     color: #aaa;
-    margin-bottom: 10px;
+
+    font-size: 0.8rem;
+
+}
+
+
+/* =================================================
+   PURPLE THEME
+   ================================================= */
+
+body.purple-mode {
+
+    background: #101010;
+
+    color: #b58cff;
+
+}
+
+
+/* Title */
+
+body.purple-mode #GameName {
+
+    color: #b58cff;
+
+}
+
+
+/* Theme buttons */
+
+body.purple-mode .theme-switch button {
+
+    background: #101010;
+
+    border: 2px solid #b58cff;
+
+}
+
+
+/* Result */
+
+body.purple-mode #GameResultDiv {
+
+    background: #101010;
+
+    border: 2px solid #b58cff;
+
+}
+
+
+/* Money */
+
+body.purple-mode #MoneyDisplay,
+body.purple-mode #BetDisplay {
+
+    background: #101010;
+
+    border: 2px solid #b58cff;
+
+}
+
+
+/* Bet buttons */
+
+body.purple-mode #MoneyBetDiv button {
+
+    background: #101010;
+
+    color: #b58cff;
+
+    border: 2px solid #b58cff;
+
+}
+
+
+/* Moves */
+
+body.purple-mode .PlayerMove {
+
+    background: #101010;
+
+    color: #b58cff;
+
+    border: 2px solid #b58cff;
+
+}
+
+
+/* Start / Restart */
+
+body.purple-mode #StartGame,
+body.purple-mode #RestartGame {
+
+    background: #101010;
+
+    color: #b58cff;
+
+    border: 2px solid #b58cff;
+
+}
+
+
+/* Developer */
+
+body.purple-mode .developer {
+
+    color: #b58cff;
+
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    #GameContainer {
+
+        padding: 15px 5px;
+
+    }
+
+
+    .PlayerMove {
+
+        width: 100px;
+
+        height: 60px;
+
+    }
+
+
+    #StartGame,
+    #RestartGame {
+
+        width: 130px;
+
+        height: 55px;
+
+    }
+
 }
