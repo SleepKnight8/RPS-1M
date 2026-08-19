@@ -1,7 +1,3 @@
-/* =========================
-   RESET
-   ========================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -9,29 +5,8 @@
 }
 
 
-/* =========================
-   THEME VARIABLES
-   ========================= */
-
 body {
-
-    --main-color: #f5e05a;
-    --background-1: #13171c;
-    --background-2: #1b2028;
-    --card: #2a2a2a;
-    --text: #f5e05a;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--background-1) 0%,
-            var(--background-2) 100%
-        );
-
-    color: var(--text);
-
     font-family: Arial, sans-serif;
-
     text-align: center;
 
     min-height: 100vh;
@@ -39,502 +14,194 @@ body {
     padding: 12px;
 
     overflow-x: hidden;
-
-    transition:
-        background 0.3s ease,
-        color 0.3s ease;
 }
 
 
-/* =========================
-   HIDE RADIO BUTTONS
-   ========================= */
-
-#yellowMode,
-#purpleMode {
-
-    display: none;
-
-}
-
 
 /* =========================
-   THEME SWITCH
    ========================= */
 
 .theme-switch {
-
-    width: 100%;
-
     display: flex;
-
     justify-content: center;
-
-    align-items: center;
-
     gap: 10px;
 
-    margin: 10px auto 20px;
-
+    padding: 20px 0;
 }
 
-
-/* Theme buttons */
-
-.theme-button {
-
+.theme-switch button {
     width: 45px;
     height: 45px;
 
-    display: flex;
+    border-radius: 10px;
 
-    justify-content: center;
-
-    align-items: center;
-
-    border-radius: 12px;
-
-    background: #2a2a2a;
-
-    border: 2px solid transparent;
-
-    cursor: pointer;
-
-    font-size: 1.2rem;
-
-    transition:
-        transform 0.2s ease,
-        border 0.2s ease,
-        background 0.2s ease;
-
+    font-size: 20px;
 }
-
-
-/* Hover */
-
-.theme-button:hover {
-
-    transform: scale(1.08);
-
-}
-
-
-/* Selected yellow */
-
-#yellowMode:checked ~ .theme-switch label[for="yellowMode"] {
-
-    border-color: #f5e05a;
-
-}
-
-
-/* Selected purple */
-
-#purpleMode:checked ~ .theme-switch label[for="purpleMode"] {
-
-    border-color: #b58cff;
-
-}
-
 
 /* =========================
-   GAME CONTAINER
    ========================= */
 
 #GameContainer {
-
     width: 100%;
-
     max-width: 900px;
 
-    margin: 0 auto;
+    margin: auto;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
 
     gap: 12px;
 
-    min-height: 100vh;
-
     padding: 10px 0 30px;
-
 }
 
 
-/* =========================
-   TEXT
-   ========================= */
-
 #GameName {
-
     font-size: clamp(
         2rem,
         6vw,
         3rem
     );
-
 }
 
 
 #GameMission {
-
     font-size: clamp(
-        0.9rem,
+        .9rem,
         2vw,
         1.2rem
     );
 
-    padding: 0 10px;
-
     max-width: 800px;
 
+    padding: 0 10px;
 }
 
 
-/* =========================
-   STATUS
-   ========================= */
-
 #GameStatusDiv {
-
     display: flex;
 
     justify-content: center;
 
-    align-items: center;
-
     gap: 20px;
 
     flex-wrap: wrap;
-
 }
 
 
-/* =========================
-   RESULT BOX
-   ========================= */
-
 #GameResultDiv {
-
     width: min(
         90%,
         500px
     );
 
-    background: var(--card);
-
     padding: 12px;
 
     border-radius: 15px;
-
-    transition:
-        background 0.3s ease;
-
 }
 
 
 #ComputerMoveDisplay {
-
     color: #8ecae6;
-
 }
 
 
 #result {
-
-    color: #ffd166;
-
     font-weight: bold;
-
 }
 
-
-#BetResult {
-
-    color: #888;
-
-}
-
-
-/* =========================
-   MONEY DISPLAY
-   ========================= */
 
 #MoneyDisplay,
 #BetDisplay {
-
-    background: var(--card);
-
     padding: 10px 18px;
 
     border-radius: 12px;
-
 }
 
 
-/* =========================
-   BET BUTTONS
-   ========================= */
-
 #MoneyBetDiv {
-
     display: flex;
 
     justify-content: center;
 
-    align-items: center;
-
     gap: 10px;
-
 }
 
 
 #MoneyBetDiv button {
-
     width: 50px;
-
     height: 50px;
-
-    border: none;
 
     border-radius: 12px;
 
-    background: var(--card);
-
-    color: var(--main-color);
-
     font-size: 1.4rem;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-
 }
 
-
-#MoneyBetDiv button:hover {
-
-    transform: scale(1.05);
-
-}
-
-
-/* =========================
-   PLAYER MOVES
-   ========================= */
 
 #MoveDiv {
-
     display: flex;
 
     justify-content: center;
 
-    align-items: center;
-
     gap: 15px;
 
     flex-wrap: wrap;
-
 }
 
 
 .PlayerMove {
-
     width: 120px;
-
     height: 65px;
-
-    border: none;
 
     border-radius: 15px;
 
-    background: var(--card);
-
-    color: var(--main-color);
-
-    cursor: pointer;
-
     font-size: 1.5rem;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-
 }
 
 
 .PlayerMove:hover {
-
     transform: translateY(-4px);
-
 }
 
-
-/* =========================
-   START / RESTART
-   ========================= */
 
 #StartGame,
 #RestartGame {
-
     width: 150px;
-
     height: 65px;
-
-    border: none;
 
     border-radius: 15px;
 
-    background: var(--main-color);
-
-    color: var(--background-1);
-
     font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-
 }
 
-
-#StartGame:hover,
-#RestartGame:hover {
-
-    transform: translateY(-3px);
-
-    opacity: 0.9;
-
-}
-
-
-/* =========================
-   DEVELOPER
-   ========================= */
 
 .developer {
-
-    color: var(--main-color);
-
     text-decoration: none;
 
     font-weight: bold;
-
-    transition: opacity 0.2s ease;
-
-}
-
-
-.developer:hover {
-
-    opacity: 0.7;
-
 }
 
 
 #copyright {
-
-    font-size: 0.8rem;
-
-    color: #aaa;
+    font-size: .8rem;
 
     margin-bottom: 10px;
-
 }
 
-
-/* =========================
-   PURPLE THEME
-   ========================= */
-
-body:has(#purpleMode:checked) {
-
-    --main-color: #b58cff;
-
-    --background-1: #101010;
-
-    --background-2: #101010;
-
-    --card: #181818;
-
-    --text: #b58cff;
-
-}
-
-
-/* Purple theme result */
-
-body:has(#purpleMode:checked) #result {
-
-    color: #b58cff;
-
-}
-
-
-/* Purple theme result box */
-
-body:has(#purpleMode:checked) #GameResultDiv {
-
-    border: 2px solid #b58cff;
-
-}
-
-
-/* Purple selected button */
-
-body:has(#purpleMode:checked)
-.theme-button[for="purpleMode"] {
-
-    background: #181818;
-
-}
-
-
-/* =========================
-   MOBILE
-   ========================= */
 
 @media (max-width: 600px) {
 
-    #GameContainer {
-
-        padding-left: 5px;
-
-        padding-right: 5px;
-
-    }
-
-
-    #MoveDiv {
-
-        gap: 10px;
-
-    }
-
-
     .PlayerMove {
-
         width: 100px;
-
         height: 60px;
-
     }
 
 
     #StartGame,
     #RestartGame {
-
         width: 140px;
-
         height: 60px;
-
     }
 
 }
