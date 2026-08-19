@@ -11,53 +11,38 @@
 
     <title>RPS to 1M</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/SleepKnight8/SleepKnight8_Themes/themes.css">
 
-    <link rel="icon" href="image.png">
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <link
+        rel="icon"
+        href="image.png">
 
 </head>
 
-
-<body>
-
-    <!-- =========================
-         THEME SWITCH
-         ========================= -->
-
-    <input
-        type="radio"
-        name="theme"
-        id="yellowMode"
-        checked>
-
-    <input
-        type="radio"
-        name="theme"
-        id="purpleMode">
-
-
+<body class="sk-yellow">
     <div class="theme-switch">
 
-        <label
-            for="yellowMode"
-            class="theme-button">
+        <button
+            id="yellowMode"
+            onclick="setTheme('yellow')">
             🟡
-        </label>
+        </button>
 
-        <label
-            for="purpleMode"
-            class="theme-button">
+        <button
+            id="purpleMode"
+            onclick="setTheme('purple')">
             🟣
-        </label>
-
+        </button>
     </div>
 
-
-    <!-- =========================
-         GAME
-         ========================= -->
-
     <div id="GameContainer">
+
 
         <h1 id="GameName">
             RPS to 1M
@@ -71,8 +56,6 @@
             to win the game.
         </h2>
 
-
-        <!-- Game Status -->
 
         <h3>
             Game Status
@@ -92,8 +75,6 @@
         </div>
 
 
-        <!-- Game Result -->
-
         <div id="GameResultDiv">
 
             <p id="ComputerMoveDisplay">
@@ -111,8 +92,6 @@
         </div>
 
 
-        <!-- Money -->
-
         <h3 id="MoneyDisplay">
             50000
         </h3>
@@ -123,26 +102,27 @@
         </h3>
 
 
-        <!-- Bet Buttons -->
-
         <div id="MoneyBetDiv">
 
             <button
                 id="Increase"
                 onclick="BetFunc(this)">
+
                 +
+
             </button>
+
 
             <button
                 id="Decrease"
                 onclick="BetFunc(this)">
+
                 -
+
             </button>
 
         </div>
 
-
-        <!-- Player Move -->
 
         <h3>
             Your Move
@@ -155,7 +135,9 @@
                 onclick="chooseMove(this)"
                 class="PlayerMove"
                 value="R">
+
                 👊
+
             </button>
 
 
@@ -163,7 +145,9 @@
                 onclick="chooseMove(this)"
                 class="PlayerMove"
                 value="P">
+
                 🖐️
+
             </button>
 
 
@@ -171,7 +155,9 @@
                 onclick="chooseMove(this)"
                 class="PlayerMove"
                 value="S">
+
                 ✌️
+
             </button>
 
         </div>
@@ -180,25 +166,23 @@
         <br>
 
 
-        <!-- Game Controls -->
-
         <button
             id="StartGame"
             onclick="play()">
+
             Start
+
         </button>
 
 
         <button
             id="RestartGame"
             onclick="restart()">
+
             Restart
+
         </button>
 
-
-        <!-- =========================
-             DEVELOPER
-             ========================= -->
 
         <h2>
             The Best Developer
@@ -216,15 +200,15 @@
 
 
         <p id="copyright">
+
             © 2026 SleepKnight8.
             All rights reserved.
+
         </p>
 
     </div>
 
-
-    <!-- Your existing JavaScript -->
-
+    <script src="https://cdn.jsdelivr.net/gh/SleepKnight8/SleepKnight8_Themes/themes.js"></script>
     <script src="index.js"></script>
 
 </body>
